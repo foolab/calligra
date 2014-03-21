@@ -3,7 +3,7 @@
 
 #include <QDebug>
 #include <kglobal.h>
-
+#define DISABLE_KDEBUG
 #ifdef DISABLE_KDEBUG
 #include <QFile>
 static QFile devnull{"/dev/null"};
