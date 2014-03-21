@@ -494,7 +494,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_sheetHelper(const QStrin
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         if (isEndElement() && name() == type) {
             break;
         }
