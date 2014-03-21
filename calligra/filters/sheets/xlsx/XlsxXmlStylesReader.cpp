@@ -505,7 +505,7 @@ KoFilter::ConversionStatus XlsxXmlStylesReader::read_styleSheet()
     int counter = 0;
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             // In the first round we read potential color overrides
@@ -562,7 +562,7 @@ KoFilter::ConversionStatus XlsxXmlStylesReader::read_fonts()
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             if (QUALIFIED_NAME_IS(font)) {
@@ -874,7 +874,7 @@ KoFilter::ConversionStatus XlsxXmlStylesReader::read_cellXfs()
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             TRY_READ_IF(xf)
@@ -958,7 +958,7 @@ KoFilter::ConversionStatus XlsxXmlStylesReader::read_xf()
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             TRY_READ_IF(alignment)
@@ -1038,7 +1038,7 @@ KoFilter::ConversionStatus XlsxXmlStylesReader::read_fills()
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             if (QUALIFIED_NAME_IS(fill)) {

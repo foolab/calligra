@@ -332,11 +332,11 @@ QString XlsxXmlWorksheetReader::computeColumnWidth(qreal widthNumber) const
     //! For explanation of width, see p. 1778
     //simplified:
     //! @todo hardcoded, not 100% accurate
-    kDebug() << "PT_TO_PX(11.0):" << PT_TO_PX(11.0);
+//    kDebug() << "PT_TO_PX(11.0):" << PT_TO_PX(11.0);
     const double realSize = round(PT_TO_PX(11.0)) * 0.75;
-    kDebug() << "realSize:" << realSize;
+//    kDebug() << "realSize:" << realSize;
     const double averageDigitWidth = realSize * 2.0 / 3.0;
-    kDebug() << "averageDigitWidth:" << averageDigitWidth;
+//    kDebug() << "averageDigitWidth:" << averageDigitWidth;
 
     QString result;
     if (averageDigitWidth * widthNumber == 0) {
@@ -367,7 +367,7 @@ inline static QString encodeLabelText(int col, int row)
 void XlsxXmlWorksheetReader::saveAnnotation(int col, int row)
 {
     QString ref(encodeLabelText(col + 1, row + 1));
-    kDebug() << ref;
+//    kDebug() << ref;
     XlsxComment *comment = m_context->comments->value(ref);
     if (!comment)
         return;
@@ -1057,7 +1057,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_cols()
     READ_PROLOGUE
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             TRY_READ_IF(col)
@@ -1093,7 +1093,7 @@ void XlsxXmlWorksheetReader::saveColumnStyle(const QString& widthString)
 
 void XlsxXmlWorksheetReader::appendTableColumns(int columns, const QString& width)
 {
-    kDebug() << "columns:" << columns;
+//    kDebug() << "columns:" << columns;
     if (columns <= 0)
         return;
     body->startElement("table:table-column");
@@ -1152,7 +1152,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_col()
             return KoFilter::WrongFormat;
 
         realWidthString = computeColumnWidth(widthNumber);
-        kDebug() << "realWidthString:" << realWidthString;
+//        kDebug() << "realWidthString:" << realWidthString;
 //moved        saveColumnStyle(realWidthString);
 //! @todo hardcoded table:default-cell-style-name
 //moved        body->addAttribute("table:default-cell-style-name", "Excel_20_Built-in_20_Normal");
@@ -1199,7 +1199,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_sheetData()
     m_currentRow = 0;
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             TRY_READ_IF(row)
@@ -1290,7 +1290,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_row()
     int counter = 0;
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             if (counter == 40) {
@@ -1362,7 +1362,7 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_c()
 
     while (!atEnd()) {
         readNext();
-        kDebug() << *this;
+//        kDebug() << *this;
         BREAK_IF_END_OF(CURRENT_EL)
         if (isStartElement()) {
             TRY_READ_IF(f)
@@ -1702,16 +1702,16 @@ KoFilter::ConversionStatus XlsxXmlWorksheetReader::read_mergeCell()
                 if (origCellStyle) {
                     cellStyle = *origCellStyle;
                 }
-                kDebug() << cell->rowsMerged << cell->columnsMerged << cell->styleName;
+//                kDebug() << cell->rowsMerged << cell->columnsMerged << cell->styleName;
                 if (cell->rowsMerged > 1) {
                     Cell* lastCell = m_context->sheet->cell(fromCol, fromRow + cell->rowsMerged - 1, false);
-                    kDebug() << lastCell;
+//                    kDebug() << lastCell;
                     if (lastCell) {
                         const KoGenStyle* style = mainStyles->style(lastCell->styleName, "table-cell");
-                        kDebug() << lastCell->styleName;
+//                        kDebug() << lastCell->styleName;
                         if (style) {
                             QString val = style->property("fo:border-bottom");
-                            kDebug() << val;
+//                            kDebug() << val;
                             if (!val.isEmpty()) cellStyle.addProperty("fo:border-bottom", val);
                             val = style->property("fo:border-line-width-bottom");
                             if (!val.isEmpty()) cellStyle.addProperty("fo:border-line-width-bottom", val);
