@@ -76,8 +76,10 @@ public:
         foreach(const KoShape* shape, koPaView->activePage()->shapes()) {
             if(!shape->hyperLink().isEmpty()) {
                 QRectF rect = shape->boundingRect();
-                while(KoShapeContainer* parent = shape->parent()) {
+                KoShapeContainer *parent = shape->parent();
+                while(parent) {
                     rect.translate(parent->position());
+                    parent = parent->parent();
                 }
                 links.append(QPair<QRectF, QUrl>(rect, QUrl(shape->hyperLink())));
             }
@@ -105,8 +107,10 @@ public:
                                 if(shapeData->document() == text)
                                 {
                                     rect.translate(shape->position());
-                                    while(KoShapeContainer* parent = shape->parent()) {
+                                    KoShapeContainer *parent = shape->parent();
+                                    while(parent) {
                                         rect.translate(parent->position());
+                                        parent = parent->parent();
                                     }
                                     break;
                                 }
